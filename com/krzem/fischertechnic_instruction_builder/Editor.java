@@ -127,7 +127,6 @@ public class Editor extends Constants{
 		for (Block b:this.bl){
 			b._update(gl);
 		}
-		this.bl.get(0).pos=new double[]{this.cls.cam.x,0,this.cls.cam.z};
 		this.mn.update();
 	}
 
