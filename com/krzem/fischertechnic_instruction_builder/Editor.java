@@ -171,7 +171,6 @@ public class Editor extends Constants{
 		gl.glEnd();
 		this.mn.draw(g);
 		g.dispose();
-		gl.glPushMatrix();
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		this.cls.glu.gluOrtho2D(0,WINDOW_SIZE.width,0,WINDOW_SIZE.height);
@@ -199,7 +198,6 @@ public class Editor extends Constants{
 		gl.glTexCoord2d(0,0);
 		gl.glVertex2d(0,WINDOW_SIZE.height);
 		gl.glEnd();
-		gl.glPopMatrix();
 		gl.glDisable(GL2.GL_BLEND);
 		gl.glDisable(GL2.GL_TEXTURE_2D);
 	}
