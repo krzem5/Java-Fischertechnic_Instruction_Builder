@@ -1,4 +1,5 @@
 ### Github File Push Ignore
 
 **/*.class
-fischertechnik Einzelteilliste.pdf
+com/krzem/fischertechnic_instruction_builder/assets/models/*.txt
+*.pdf
