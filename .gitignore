@@ -1,5 +1,3 @@
-### Github File Push Ignore
-
-**/*.class
+build
 com/krzem/fischertechnic_instruction_builder/assets/models/*.txt
 *.pdf
