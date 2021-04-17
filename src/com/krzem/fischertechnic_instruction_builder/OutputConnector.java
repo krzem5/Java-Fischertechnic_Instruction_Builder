@@ -5,6 +5,7 @@ package com.krzem.fischertechnic_instruction_builder;
 import com.jogamp.opengl.GL2;
 import java.lang.reflect.Constructor;
 import java.util.Map;
+import java.util.HashMap;
 
 
 
@@ -129,7 +130,14 @@ public abstract class OutputConnector extends ClickObject{
 	public static final OutputConnector create(String nm,Main.Main_ cls,Editor e,Block b,double[] off,double[] rot,double[] norm){
 		try{
 			if (OutputConnector._occl==null){
-				OutputConnector._occl=new CompileClassLoader()._load_map(OUTPUT_CONNECTOR_CLASS_DIR,"outputconnector");
+				try{
+					OutputConnector._occl=new HashMap<String,Constructor>();
+					OutputConnector._occl.put("pin",com.krzem.fischertechnic_instruction_builder.connector.PinOutputConnector.class.getConstructor());
+				}
+				catch (NoSuchMethodException ex){
+					ex.printStackTrace();
+					OutputConnector._occl=null;
+				}
 			}
 			Object _oc=OutputConnector._occl.get(nm.toLowerCase()).newInstance();
 			OutputConnector oc=(OutputConnector)_oc;

@@ -5,6 +5,8 @@ package com.krzem.fischertechnic_instruction_builder;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.Exception;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +23,7 @@ public class MDLFileLoader extends Constants{
 
 	public static double[][] get_tr(String nm){
 		if (MDLFileLoader._tr_data.get(nm)==null){
-			MDLFileLoader._load(new File(MODEL_DIR+nm+".mdl").getAbsolutePath());
+			MDLFileLoader._load(nm+".mdl");
 		}
 		return MDLFileLoader._tr_data.get(nm);
 	}
@@ -30,7 +32,7 @@ public class MDLFileLoader extends Constants{
 
 	public static double[][] get_ln(String nm){
 		if (MDLFileLoader._ln_data.get(nm)==null){
-			MDLFileLoader._load(new File(MODEL_DIR+nm+".mdl").getAbsolutePath());
+			MDLFileLoader._load(nm+".mdl");
 		}
 		return MDLFileLoader._ln_data.get(nm);
 	}
@@ -39,7 +41,7 @@ public class MDLFileLoader extends Constants{
 
 	public static double[] get_bs(String nm){
 		if (MDLFileLoader._bs_data.get(nm)==null){
-			MDLFileLoader._load(new File(MODEL_DIR+nm+".mdl").getAbsolutePath());
+			MDLFileLoader._load(nm+".mdl");
 		}
 		return MDLFileLoader._bs_data.get(nm);
 	}
@@ -48,7 +50,8 @@ public class MDLFileLoader extends Constants{
 
 	private static void _load(String fn){
 		try{
-			BufferedReader br=new BufferedReader(new FileReader(new File(fn)));
+			InputStream is=MDLFileLoader.class.getResourceAsStream(MODEL_DIR+fn);
+			BufferedReader br=new BufferedReader(new InputStreamReader(is,"UTF-8"));
 			String dt=br.readLine();
 			br.close();
 			double ax=0;
@@ -84,6 +87,8 @@ public class MDLFileLoader extends Constants{
 			MDLFileLoader._tr_data.put(fn.substring(fn.replace("/","\\").lastIndexOf("\\")+1,fn.length()-4),tl.toArray(new double[tl.size()][3]));
 			MDLFileLoader._ln_data.put(fn.substring(fn.replace("/","\\").lastIndexOf("\\")+1,fn.length()-4),ll.toArray(new double[ll.size()][3]));
 			MDLFileLoader._bs_data.put(fn.substring(fn.replace("/","\\").lastIndexOf("\\")+1,fn.length()-4),new double[]{ax,ay,az,Math.sqrt(md)});
+			is.close();
+			br.close();
 		}
 		catch (Exception e){
 			e.printStackTrace();
@@ -96,39 +101,4 @@ public class MDLFileLoader extends Constants{
 		return new double[]{Double.parseDouble(vs.split(",")[0]),Double.parseDouble(vs.split(",")[1]),Double.parseDouble(vs.split(",")[2])};
 	}
 
-
-
-
-	// private static void _load(String fn){
-	// 	try{
-	// 		BufferedReader br=new BufferedReader(new FileReader(new File(fn)));
-	// 		String l;
-	// 		ArrayList<double[][]> ol=new ArrayList<double[][]>();
-	// 		ArrayList<double[]> vl=new ArrayList<double[]>();
-	// 		ArrayList<double[]> vnl=new ArrayList<double[]>();
-	// 		while ((l=br.readLine())!=null){
-	// 			if (l.startsWith("v ")){
-	// 				String[] sl=l.split(" ");
-	// 				vl.add(new double[]{Double.parseDouble(sl[1]),Double.parseDouble(sl[2]),Double.parseDouble(sl[3])});
-	// 			}
-	// 			else if (l.startsWith("vn ")){
-	// 				String[] sl=l.split(" ");
-	// 				vnl.add(new double[]{Double.parseDouble(sl[1]),Double.parseDouble(sl[2]),Double.parseDouble(sl[3])});
-	// 			}
-	// 		}
-	// 		br.close();
-	// 		br=new BufferedReader(new FileReader(new File(fn)));
-	// 		while ((l=br.readLine())!=null){
-	// 			if (l.startsWith("f ")){
-	// 				String[] sl=l.split(" ");
-	// 				ol.add(new double[][]{vl.get(Integer.parseInt(sl[1].split("/")[0])-1),vnl.get(Integer.parseInt(sl[1].split("/")[2])-1),vl.get(Integer.parseInt(sl[2].split("/")[0])-1),vnl.get(Integer.parseInt(sl[2].split("/")[2])-1),vl.get(Integer.parseInt(sl[3].split("/")[0])-1),vnl.get(Integer.parseInt(sl[3].split("/")[2])-1)});
-	// 			}
-	// 		}
-	// 		br.close();
-	// 		MDLFileLoader._data.put(fn.substring(fn.replace("/","\\").lastIndexOf("\\")+1,fn.length()-4),ol.toArray(new double[ol.size()][6][3]));
-	// 	}
-	// 	catch (Exception e){
-	// 		e.printStackTrace();
-	// 	}
-	// }
 }

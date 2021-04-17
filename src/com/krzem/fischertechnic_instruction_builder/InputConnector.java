@@ -7,6 +7,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 
 
@@ -143,7 +144,15 @@ public abstract class InputConnector extends ClickObject{
 	public static final InputConnector create(String nm,Main.Main_ cls,Editor e,Block b,double[] off,double[] rot,double[] norm){
 		try{
 			if (InputConnector._iccl==null){
-				InputConnector._iccl=new CompileClassLoader()._load_map(INPUT_CONNECTOR_CLASS_DIR,"inputconnector");
+				try{
+					InputConnector._iccl=new HashMap<String,Constructor>();
+					InputConnector._iccl.put("pin11",com.krzem.fischertechnic_instruction_builder.connector.PinInputConnector11.class.getConstructor());
+					InputConnector._iccl.put("pin15",com.krzem.fischertechnic_instruction_builder.connector.PinInputConnector15.class.getConstructor());
+				}
+				catch (NoSuchMethodException ex){
+					ex.printStackTrace();
+					InputConnector._iccl=null;
+				}
 			}
 			Object _ic=InputConnector._iccl.get(nm.toLowerCase()).newInstance();
 			InputConnector ic=(InputConnector)_ic;

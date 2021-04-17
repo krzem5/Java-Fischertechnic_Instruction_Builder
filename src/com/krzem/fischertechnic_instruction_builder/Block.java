@@ -9,6 +9,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.w3c.dom.Element;
 
 
@@ -152,7 +153,14 @@ public abstract class Block extends ClickObject{
 	public static final Block create(String nm,Main.Main_ cls,Editor e,double[] pos,double[] rot,Element el){
 		try{
 			if (Block._bcl==null){
-				Block._bcl=new CompileClassLoader()._load_map(BLOCK_CLASS_DIR,"");
+				try{
+					Block._bcl=new HashMap<String,Constructor>();
+					Block._bcl.put("buildingblock15",com.krzem.fischertechnic_instruction_builder.block.BuildingBlock15.class.getConstructor());
+				}
+				catch (NoSuchMethodException ex){
+					ex.printStackTrace();
+					Block._bcl=null;
+				}
 			}
 			Object _b=Block._bcl.get(nm.toLowerCase()).newInstance();
 			Block b=(Block)_b;

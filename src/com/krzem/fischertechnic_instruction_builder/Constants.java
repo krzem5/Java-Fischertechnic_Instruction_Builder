@@ -20,7 +20,7 @@ public class Constants{
 
 	public static final double EPSILON=Math.ulp(1d);
 
-	public static final String MODEL_DIR="./com/krzem/fischertechnic_instruction_builder/assets/models/";
+	public static final String MODEL_DIR="/rsrc/models/";
 	public static final String BLOCK_CLASS_DIR="./com/krzem/fischertechnic_instruction_builder/class/block/";
 	public static final String OUTPUT_CONNECTOR_CLASS_DIR="./com/krzem/fischertechnic_instruction_builder/class/connector/";
 	public static final String INPUT_CONNECTOR_CLASS_DIR="./com/krzem/fischertechnic_instruction_builder/class/connector/";

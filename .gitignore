@@ -1,3 +1,4 @@
 build
-com/krzem/fischertechnic_instruction_builder/assets/models
 *.pdf
+*.txt
+!LICENSE.txt

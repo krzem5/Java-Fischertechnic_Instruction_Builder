@@ -1,3 +1,7 @@
+package com.krzem.fischertechnic_instruction_builder.block;
+
+
+
 import com.jogamp.opengl.GL2;
 import com.krzem.fischertechnic_instruction_builder.Block;
 import com.krzem.fischertechnic_instruction_builder.InputConnector;
