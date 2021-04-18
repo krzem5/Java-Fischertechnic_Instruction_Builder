@@ -12,30 +12,35 @@ import org.w3c.dom.Element;
 
 
 public class BuildingBlock15 extends Block{
+	@Override
 	public String get_name(){
 		return "building_block_15";
 	}
 
 
 
+	@Override
 	public String get_user_name(){
 		return "Building Block 15mm";
 	}
 
 
 
+	@Override
 	public String[] get_colors(){
 		return new String[]{"black","red"};
 	}
 
 
 
+	@Override
 	public double[] get_size(){
 		return new double[]{15,15,18};
 	}
 
 
 
+	@Override
 	public void init(Element e){
 		this.output_connectors.add(OutputConnector.create("pin",this.cls,this.e,this,new double[]{0,0,7.5},new double[]{0,0,0},new double[]{0,0,1}));
 		this.input_connectors.add(InputConnector.create("pin11",this.cls,this.e,this,new double[]{0,5.5,0.75},new double[]{Math.PI,0,0},new double[]{0,1,0}));
@@ -46,12 +51,14 @@ public class BuildingBlock15 extends Block{
 
 
 
+	@Override
 	public void update(){
 
 	}
 
 
 
+	@Override
 	public void draw(GL2 gl){
 		this.draw_model(gl,"black",this.pos);
 	}

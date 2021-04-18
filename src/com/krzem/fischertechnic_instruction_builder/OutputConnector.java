@@ -65,12 +65,14 @@ public abstract class OutputConnector extends ClickObject{
 
 
 
+	@Override
 	public final double[][] get_triangles(){
 		return this._rot(MDLFileLoader.get_tr(this.get_name()),this.rot,this.b.rot);
 	}
 
 
 
+	@Override
 	public final double[] get_bounding_sphere(){
 		return MDLFileLoader.get_bs(this.get_name());
 	}
@@ -136,7 +138,7 @@ public abstract class OutputConnector extends ClickObject{
 				}
 				catch (NoSuchMethodException ex){
 					ex.printStackTrace();
-					OutputConnector._occl=null;
+					System.exit(1);
 				}
 			}
 			Object _oc=OutputConnector._occl.get(nm.toLowerCase()).newInstance();

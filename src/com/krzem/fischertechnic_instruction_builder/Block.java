@@ -74,12 +74,14 @@ public abstract class Block extends ClickObject{
 
 
 
+	@Override
 	public final double[][] get_triangles(){
 		return this._rot(MDLFileLoader.get_tr(this.get_name()),this.rot);
 	}
 
 
 
+	@Override
 	public final double[] get_bounding_sphere(){
 		return MDLFileLoader.get_bs(this.get_name());
 	}
@@ -159,7 +161,7 @@ public abstract class Block extends ClickObject{
 				}
 				catch (NoSuchMethodException ex){
 					ex.printStackTrace();
-					Block._bcl=null;
+					System.exit(1);
 				}
 			}
 			Object _b=Block._bcl.get(nm.toLowerCase()).newInstance();

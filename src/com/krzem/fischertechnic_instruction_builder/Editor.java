@@ -85,10 +85,8 @@ public class Editor extends Constants{
 					else if (sb!=null){
 						for (Block b:this.bl){
 							if (b.sel==false){
-								for (Block ib:this.bl){
-									for (InputConnector ic:b.input_connectors){
-										ic.h_oc=null;
-									}
+								for (InputConnector ic:b.input_connectors){
+									ic.h_oc=null;
 								}
 								continue;
 							}

@@ -78,12 +78,14 @@ public abstract class InputConnector extends ClickObject{
 
 
 
+	@Override
 	public final double[][] get_triangles(){
 		return this._rot(MDLFileLoader.get_tr(this.get_name()),this.rot,this.b.rot);
 	}
 
 
 
+	@Override
 	public final double[] get_bounding_sphere(){
 		return MDLFileLoader.get_bs(this.get_name());
 	}
@@ -151,7 +153,7 @@ public abstract class InputConnector extends ClickObject{
 				}
 				catch (NoSuchMethodException ex){
 					ex.printStackTrace();
-					InputConnector._iccl=null;
+					System.exit(1);
 				}
 			}
 			Object _ic=InputConnector._iccl.get(nm.toLowerCase()).newInstance();
