@@ -53,6 +53,7 @@ public abstract class ClickObject extends Constants{
 	}
 
 
+
 	private double _calc_distance(double[] bs,double[] off){
 		return ((bs[0]+off[0]-this.cls.cam.x)*(bs[0]+off[0]-this.cls.cam.x)+(bs[1]+off[1]-this.cls.cam.y)*(bs[1]+off[1]-this.cls.cam.y)+(bs[2]+off[2]-this.cls.cam.z)*(bs[2]+off[2]-this.cls.cam.z))-bs[3]*bs[3];
 	}
